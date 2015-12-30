@@ -218,6 +218,108 @@
 
     
     
+      
+      
+        
+        
+        
+      
+
+      
+    
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2015/12/30/寻找谷歌ip/" itemprop="url">
+                  寻找谷歌ip
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2015-12-30T15:16:01+08:00" content="2015-12-30">
+              2015-12-30
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2015/12/30/寻找谷歌ip/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/30/寻找谷歌ip/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <h2 id="u5BFB_u627E_u7A00_u6709_u8C37_u6B4Cip"><a href="#u5BFB_u627E_u7A00_u6709_u8C37_u6B4Cip" class="headerlink" title="寻找稀有谷歌ip"></a>寻找稀有谷歌ip</h2><h3 id="u9010_u4E2A_u67E5_u627E_u4E0E_u8C37_u6B4C_u7F51_u57DF_u5173_u8054_u7684DNS_u8BB0_u5F55"><a href="#u9010_u4E2A_u67E5_u627E_u4E0E_u8C37_u6B4C_u7F51_u57DF_u5173_u8054_u7684DNS_u8BB0_u5F55" class="headerlink" title="逐个查找与谷歌网域关联的DNS记录"></a>逐个查找与谷歌网域关联的DNS记录</h3><p><strong>nslookup -q=TXT _netblocks.google.com 8.8.8.8</strong><br><strong>nslookup -q=TXT _netblocks2.google.com 8.8.8.8</strong><br><strong>nslookup -q=TXT _netblocks3.google.com 8.8.8.8</strong></p>
+<p>结果如下：<br>  <strong>“v=spf1 ip4:64.18.0.0/20 ip4:64.233.160.0/19 ip4:66.102.0.0/20 ip4:66.249.80.0/20 ip4:72.14.192.0/18 ip4:74.125.0.0/16 ip4:108.177.8.0/21 ip4:173.194.0.0/16 ip4:207.126.144.0/20 ip4:209.85.128.0/17 ip4:216.58.192.0/19 ip4:216.239.32.0/19 ~all”</strong></p>
+<p>这并不是 Google 保留的 IP 地址的完整列表。。</p>
+<h3 id="nmap_u626B_u63CF_u5BA1_u67E5_u7AEF_u53E3443"><a href="#nmap_u626B_u63CF_u5BA1_u67E5_u7AEF_u53E3443" class="headerlink" title="nmap扫描审查端口443"></a>nmap扫描审查端口443</h3><p><strong>nmap -sS -sV -p 443 -Pn 谷歌ip段</strong></p>
+<p>此步骤就要拼人气了。喝口茶，回来再看看。结果是这样的就能用</p>
+<p><strong>443/tcp open  ssl/http Google httpd 2.0 (GFE)</strong></p>
+<h3 id="u795D_u4F60_u597D_u8FD0_u3002_u3002"><a href="#u795D_u4F60_u597D_u8FD0_u3002_u3002" class="headerlink" title="祝你好运。。"></a>祝你好运。。</h3>
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -475,7 +577,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">3</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -489,7 +591,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
