@@ -66,7 +66,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
     scheme: 'Mist',
-    sidebar: 'always',
+    sidebar: '',
     motion: true
   };
 </script>
@@ -218,6 +218,102 @@
 
     
     
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/01/04/为什么修改了hosts文件后可以顺利访问youtube但不能看上面的视频/" itemprop="url">
+                  为什么修改了hosts文件后可以顺利访问youtube但不能看上面的视频
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-01-04T18:44:44+08:00" content="2016-01-04">
+              2016-01-04
+            </time>
+          </span>
+          
+          
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/01/04/为什么修改了hosts文件后可以顺利访问youtube但不能看上面的视频/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/04/为什么修改了hosts文件后可以顺利访问youtube但不能看上面的视频/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        
+          <span itemprop="articleBody">
+            
+              <p>包括Youtube页面在内的大部分Google服务都可以通过任何一个gws来完成,也即我们可以找到一个gws的IP地址,然后把Google的所有域名都泛解析上去即可满足大部分的访问需求,但Youtube视频是一个例外.Youtube内的所有视频全部是通过<a href="http://googlevideo.com这一域名完成的,并且IP地址和域名是一一对应的.而且某个视频只存在于某些服务器上,在用户请求的环境下不能够通过Google的内网传输.这就意味着单纯地把http://googlevideo.com泛解析到某一个Google的IP地址是无法观看视频的" target="_blank" rel="external">http://googlevideo.com这一域名完成的,并且IP地址和域名是一一对应的.而且某个视频只存在于某些服务器上,在用户请求的环境下不能够通过Google的内网传输.这就意味着单纯地把http://googlevideo.com泛解析到某一个Google的IP地址是无法观看视频的</a>.<br>Youtube视频在请求时,首先会将你direct到某一组gvs上,我们在解决了DNS污染问题的前提下通过访问<a href="https://redirector.googlevideo.com/report_mapping" target="_blank" rel="external">https://redirector.googlevideo.com/report_mapping</a> 即可得知我们被direct到了哪组服务器上,例如我这里是hkg08s08.通过解析r1.hkg08s08.googlevideo.com即可得到服务器的IP地址.然后把这一组域名及对应的IP地址一一写入hosts中,在IP地址没有被封锁的情况下即可访问视频.但由于direct服务器的变化及在不能访问时Youtube会做的二次direct,这样做并不能保证可以稳定访问所有视频,因为并没有完全解除对googlevideo.com的DNS污染.<br>想要通过解决DNS污染的方式来观看Youtube,最可行的办法是通过bind或dnsmasq来架设本地DNS服务器,并把<a href="http://googlevideo.com这一个域名forward到一个能够返回正确IP地址的服务器(例如opendns的5353端口).由于googlevideo从2014年初开始支持了https方式访问,所以通过这种手段可以做到Youtube的直连.但这种方法在IP地址被严厉封锁的时期依然不能观看视频,最近一年就是时好时坏.即使可以观看由于高峰时期拥堵的国际线路,视频的加载速度在大部分地区也不会十分理想.在现阶段最好的解决办法依然是寻找购买优质的VPS,但这就是另外的问题了" target="_blank" rel="external">http://googlevideo.com这一个域名forward到一个能够返回正确IP地址的服务器(例如opendns的5353端口).由于googlevideo从2014年初开始支持了https方式访问,所以通过这种手段可以做到Youtube的直连.但这种方法在IP地址被严厉封锁的时期依然不能观看视频,最近一年就是时好时坏.即使可以观看由于高峰时期拥堵的国际线路,视频的加载速度在大部分地区也不会十分理想.在现阶段最好的解决办法依然是寻找购买优质的VPS,但这就是另外的问题了</a>.</p>
+<p>PS:gws:Google Web Server; gvs:Google Video Server.</p>
+<p>PS:在观看一个视频时，大致步骤如下：</p>
+<p>浏览器首先向 youtube.com 发起请求，youtube.com 会根据来源 IP 所属的 IP 段向客户端分配一个服务器 (通常会选择性能最好的节点，但是因为某些原因，会出现 Issue #8 描述的现象)，比如 r1—sn-gxuxapu-hm2e.googlevideo.com。<br>客户端向r1.sn-gxuxapu-hm2e 请求真正的视频文件。<br>如果此服务器无法访问，youtube.com 进行第二次 redirect，如 r8—sn-o097znel.googlevideo.com。<br>客户端向第二次分配的服务器 r8.sn-o097znel 请求视频文件。<br>如果第二次分配的服务器还无法访问，那么失败。<br>第一步是根据来源 IP 进行导向的，并且 sn 域名全是固定 IP，所以无法进行重定向来加速。除非用代理访问 youtube.com 这个域名 (间接改变来源 IP)，然后直连分配的 googlevideo 服务器。</p>
+<p>依上面的思路。捣鼓了一天，直接观看youtube宣告失败。原因在于封锁IP。</p>
+<p>youtube视频1080P方法：</p>
+<p>hosts+lantern+chrome+switchyomega（8787）</p>
+
+            
+          </span>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
 
     
       
@@ -668,7 +764,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -682,7 +778,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
