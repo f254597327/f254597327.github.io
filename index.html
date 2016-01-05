@@ -218,6 +218,15 @@
 
     
     
+      
+      
+        
+        
+        
+      
+
+      
+    
 
     
       
@@ -241,8 +250,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/01/04/hosts-youtube不能播放/" itemprop="url">
-                  为什么修改了hosts文件后可以顺利访问youtube但不能看上面的视频
+                <a class="post-title-link" href="/2016/01/05/神探夏洛克可恶的新娘720P+中文字幕 /" itemprop="url">
+                  神探夏洛克可恶的新娘720P+中文字幕
                 </a>
               
             
@@ -252,8 +261,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-01-04T18:44:44+08:00" content="2016-01-04">
-              2016-01-04
+            <time itemprop="dateCreated" datetime="2016-01-05T12:22:28+08:00" content="2016-01-05">
+              2016-01-05
             </time>
           </span>
           
@@ -265,8 +274,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/04/hosts-youtube不能播放/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/04/hosts-youtube不能播放/" itemprop="commentsCount"></span>
+                <a href="/2016/01/05/神探夏洛克可恶的新娘720P+中文字幕 /#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/05/神探夏洛克可恶的新娘720P+中文字幕 /" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -288,419 +297,10 @@
         
           <span itemprop="articleBody">
             
-              <p>包括Youtube页面在内的大部分Google服务都可以通过任何一个gws来完成,也即我们可以找到一个gws的IP地址,然后把Google的所有域名都泛解析上去即可满足大部分的访问需求,但Youtube视频是一个例外.Youtube内的所有视频全部是通过<a href="http://googlevideo.com这一域名完成的,并且IP地址和域名是一一对应的.而且某个视频只存在于某些服务器上,在用户请求的环境下不能够通过Google的内网传输.这就意味着单纯地把http://googlevideo.com泛解析到某一个Google的IP地址是无法观看视频的" target="_blank" rel="external">http://googlevideo.com这一域名完成的,并且IP地址和域名是一一对应的.而且某个视频只存在于某些服务器上,在用户请求的环境下不能够通过Google的内网传输.这就意味着单纯地把http://googlevideo.com泛解析到某一个Google的IP地址是无法观看视频的</a>.<br>Youtube视频在请求时,首先会将你direct到某一组gvs上,我们在解决了DNS污染问题的前提下通过访问<a href="https://redirector.googlevideo.com/report_mapping" target="_blank" rel="external">https://redirector.googlevideo.com/report_mapping</a> 即可得知我们被direct到了哪组服务器上,例如我这里是hkg08s08.通过解析r1.hkg08s08.googlevideo.com即可得到服务器的IP地址.然后把这一组域名及对应的IP地址一一写入hosts中,在IP地址没有被封锁的情况下即可访问视频.但由于direct服务器的变化及在不能访问时Youtube会做的二次direct,这样做并不能保证可以稳定访问所有视频,因为并没有完全解除对googlevideo.com的DNS污染.<br>想要通过解决DNS污染的方式来观看Youtube,最可行的办法是通过bind或dnsmasq来架设本地DNS服务器,并把<a href="http://googlevideo.com这一个域名forward到一个能够返回正确IP地址的服务器(例如opendns的5353端口).由于googlevideo从2014年初开始支持了https方式访问,所以通过这种手段可以做到Youtube的直连.但这种方法在IP地址被严厉封锁的时期依然不能观看视频,最近一年就是时好时坏.即使可以观看由于高峰时期拥堵的国际线路,视频的加载速度在大部分地区也不会十分理想.在现阶段最好的解决办法依然是寻找购买优质的VPS,但这就是另外的问题了" target="_blank" rel="external">http://googlevideo.com这一个域名forward到一个能够返回正确IP地址的服务器(例如opendns的5353端口).由于googlevideo从2014年初开始支持了https方式访问,所以通过这种手段可以做到Youtube的直连.但这种方法在IP地址被严厉封锁的时期依然不能观看视频,最近一年就是时好时坏.即使可以观看由于高峰时期拥堵的国际线路,视频的加载速度在大部分地区也不会十分理想.在现阶段最好的解决办法依然是寻找购买优质的VPS,但这就是另外的问题了</a>.</p>
-<p>PS:gws:Google Web Server; gvs:Google Video Server.</p>
-<p>PS:在观看一个视频时，大致步骤如下：</p>
-<p>浏览器首先向 youtube.com 发起请求，youtube.com 会根据来源 IP 所属的 IP 段向客户端分配一个服务器 (通常会选择性能最好的节点，但是因为某些原因，会出现 Issue #8 描述的现象)，比如 r1—sn-gxuxapu-hm2e.googlevideo.com。<br>客户端向r1.sn-gxuxapu-hm2e 请求真正的视频文件。<br>如果此服务器无法访问，youtube.com 进行第二次 redirect，如 r8—sn-o097znel.googlevideo.com。<br>客户端向第二次分配的服务器 r8.sn-o097znel 请求视频文件。<br>如果第二次分配的服务器还无法访问，那么失败。<br>第一步是根据来源 IP 进行导向的，并且 sn 域名全是固定 IP，所以无法进行重定向来加速。除非用代理访问 youtube.com 这个域名 (间接改变来源 IP)，然后直连分配的 googlevideo 服务器。</p>
-<p>依上面的思路。捣鼓了一天，直接观看youtube宣告失败。原因在于封锁IP。</p>
-<p>youtube视频1080P方法：</p>
-<p>hosts+lantern+chrome+switchyomega（8787）</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/31/install-VMware-Tools-in-Kali-Linux-2/" itemprop="url">
-                  install VMware Tools in Kali Linux 2
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-31T20:30:05+08:00" content="2015-12-31">
-              2015-12-31
-            </time>
-          </span>
-          
-          
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/12/31/install-VMware-Tools-in-Kali-Linux-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/31/install-VMware-Tools-in-Kali-Linux-2/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <h3 id="u66F4_u65B0_u7CFB_u7EDF"><a href="#u66F4_u65B0_u7CFB_u7EDF" class="headerlink" title="更新系统"></a>更新系统</h3><p><strong> apt-get update &amp;&amp; apt-get upgrade -y </strong></p>
-<h3 id="u5B89_u88C5_u5934_u6587_u4EF6"><a href="#u5B89_u88C5_u5934_u6587_u4EF6" class="headerlink" title="安装头文件"></a>安装头文件</h3><p><strong> apt-get install -y linux-headers-$(uname -r) </strong></p>
-<h3 id="u6302_u8F7Dvmware_Tools"><a href="#u6302_u8F7Dvmware_Tools" class="headerlink" title="挂载vmware Tools"></a>挂载vmware Tools</h3><p>在vmware的菜单上点击安装vmware tools，并提取到桌面解压。</p>
-<h3 id="u8FDB_u5165_u8BE5_u76EE_u5F55_u5B89_u88C5"><a href="#u8FDB_u5165_u8BE5_u76EE_u5F55_u5B89_u88C5" class="headerlink" title="进入该目录安装"></a>进入该目录安装</h3><p><strong> perl vmware-install.pl –d </strong></p>
-<p>wait。。。。。。ok</p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/30/寻找谷歌ip/" itemprop="url">
-                  寻找谷歌ip
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-30T15:16:01+08:00" content="2015-12-30">
-              2015-12-30
-            </time>
-          </span>
-          
-          
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/12/30/寻找谷歌ip/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/30/寻找谷歌ip/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <h2 id="u5BFB_u627E_u7A00_u6709_u8C37_u6B4Cip"><a href="#u5BFB_u627E_u7A00_u6709_u8C37_u6B4Cip" class="headerlink" title="寻找稀有谷歌ip"></a>寻找稀有谷歌ip</h2><h3 id="u9010_u4E2A_u67E5_u627E_u4E0E_u8C37_u6B4C_u7F51_u57DF_u5173_u8054_u7684DNS_u8BB0_u5F55"><a href="#u9010_u4E2A_u67E5_u627E_u4E0E_u8C37_u6B4C_u7F51_u57DF_u5173_u8054_u7684DNS_u8BB0_u5F55" class="headerlink" title="逐个查找与谷歌网域关联的DNS记录"></a>逐个查找与谷歌网域关联的DNS记录</h3><p><strong>nslookup -q=TXT _netblocks.google.com 8.8.8.8</strong><br><strong>nslookup -q=TXT _netblocks2.google.com 8.8.8.8</strong><br><strong>nslookup -q=TXT _netblocks3.google.com 8.8.8.8</strong></p>
-<p>结果如下：<br>  <strong>“v=spf1 ip4:64.18.0.0/20 ip4:64.233.160.0/19 ip4:66.102.0.0/20 ip4:66.249.80.0/20 ip4:72.14.192.0/18 ip4:74.125.0.0/16 ip4:108.177.8.0/21 ip4:173.194.0.0/16 ip4:207.126.144.0/20 ip4:209.85.128.0/17 ip4:216.58.192.0/19 ip4:216.239.32.0/19 ~all”</strong></p>
-<p>这并不是 Google 保留的 IP 地址的完整列表。。</p>
-<h3 id="nmap_u626B_u63CF_u5BA1_u67E5_u7AEF_u53E3443"><a href="#nmap_u626B_u63CF_u5BA1_u67E5_u7AEF_u53E3443" class="headerlink" title="nmap扫描审查端口443"></a>nmap扫描审查端口443</h3><p><strong>nmap -sS -sV -p 443 -Pn 谷歌ip段</strong></p>
-<p>此步骤就要拼人气了。喝口茶，回来再看看。结果是这样的就能用</p>
-<p><strong>443/tcp open  ssl/http Google httpd 2.0 (GFE)</strong></p>
-<h3 id="u795D_u4F60_u597D_u8FD0_u3002_u3002"><a href="#u795D_u4F60_u597D_u8FD0_u3002_u3002" class="headerlink" title="祝你好运。。"></a>祝你好运。。</h3>
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/29/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-29T12:51:36+08:00" content="2015-12-29">
-              2015-12-29
-            </time>
-          </span>
-          
-          
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/12/29/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/29/hello-world/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start"><a href="#Quick_Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-            
-          </span>
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2015/12/23/markdown语法编辑器/" itemprop="url">
-                  markdown语法编辑器
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            发表于
-            <time itemprop="dateCreated" datetime="2015-12-23T12:58:30+08:00" content="2015-12-23">
-              2015-12-23
-            </time>
-          </span>
-          
-          
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2015/12/23/markdown语法编辑器/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2015/12/23/markdown语法编辑器/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body">
-
-      
-      
-
-      
-        
-          <span itemprop="articleBody">
-            
-              <p>搭建完gihub+hexo博客之后，开始写博客，发现在WINDOWS上没有趁手的编辑器，网上推荐的，一一试过，问题多多。比如有的不能在线预览，有的不能导出，有的出现乱码。最后选择了<a href="https://atom.io/" target="_blank" rel="external">atom</a>。</p>
-<h3 id="u4E3A_u4EC0_u4E48_u9009_u62E9atom_uFF1F"><a href="#u4E3A_u4EC0_u4E48_u9009_u62E9atom_uFF1F" class="headerlink" title="为什么选择atom？"></a>为什么选择atom？</h3><ol>
-<li>免费。俺只写博客，不搞软件工程，用不着重量级的编辑器。</li>
-<li>易用。相比vim，配置起来简单，不用和指令打交道，没有鸡肋功能。有一些编辑器能直接发布到网上且不能本地保存，麻烦多多。</li>
-<li><strong> activate-power-mode</strong>这个插件太炫了。写博客肯定很爽。<img src="http://7xpf9k.com1.z0.glb.clouddn.com/Atom插件.gif" alt=""></li>
-</ol>
-<h3 id="u4E3Aatom_u5B89_u88C5markdown_u63D2_u4EF6_u3002"><a href="#u4E3Aatom_u5B89_u88C5markdown_u63D2_u4EF6_u3002" class="headerlink" title="为atom安装markdown插件。"></a>为atom安装markdown插件。</h3><ol>
-<li>markdown-preview，此插件内置。 shirft+ctrl+m 呼出预览。</li>
-<li><p>markdown-writer，需要去packeges里安装。自动激活.</p>
-<blockquote>
-<p>“shift-ctrl-K”: “markdown-writer:insert-link</p>
-<p>“shift-ctrl-I”: “markdown-writer:insert-image”</p>
-<p>“ctrl-i”:       “markdown-writer:toggle-italic-text”</p>
-<p>“ctrl-b”:       “markdown-writer:toggle-bold-text”</p>
-<p>“ctrl-‘“:       “markdown-writer:toggle-code-text”</p>
-<p>‘ctrl-‘’:       “markdown-writer:toggle-codeblock-text”</p>
-<p>“ctrl-h”:       “markdown-writer:toggle-strikethrough-text”</p>
-<p>“ctrl-1”:       “markdown-writer:toggle-h1”</p>
-<p>“ctrl-2”:       “markdown-writer:toggle-h2”</p>
-<p>“ctrl-3”:       “markdown-writer:toggle-h3”</p>
-<p>“ctrl-4”:       “markdown-writer:toggle-h4”</p>
-<p>“ctrl-5”:       “markdown-writer:toggle-h5”</p>
-</blockquote>
-</li>
-</ol>
-<h3 id="u5F00_u59CB_u5199_u4F5C"><a href="#u5F00_u59CB_u5199_u4F5C" class="headerlink" title="开始写作"></a>开始写作</h3><ul>
-<li><a href="http://wowubuntu.com/markdown/#block" target="_blank" rel="external">markdown语法</a></li>
-<li><a href="https://atom.io/packages/markdown-writer" target="_blank" rel="external">markdown-writer使用方法</a></li>
-</ul>
-<p>开始吧，少年。。其实俺也是一个新手</p>
+              <p>电影刚出，网上资源一大堆。文件大就不说了，好多都不能下载。就更别说百度云离线下载。所以就自己扒出了这个资源。</p>
+<p><a href="magnet:?xt=urn:btih:fa8c667251be19ff9c6dbc42b567fcbb55d525a1" target="_blank" rel="external">点击下载：神探夏洛克可恶的新娘720P</a></p>
+<p><a href="http://subhd.com/a/335661" target="_blank" rel="external">点击下载：简体字幕：COD字幕出品</a></p>
+<p><img src="http://ww3.sinaimg.cn/large/005K7YjTjw1ezojandtf5j30j80j8grw.jpg" alt=""></p>
 
             
           </span>
@@ -764,7 +364,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -778,7 +378,7 @@
 
           <div class="site-state-item site-state-tags">
             <a href="/tags">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">标签</span>
               </a>
           </div>
